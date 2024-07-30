@@ -2,44 +2,40 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export const config = {
-  api: {
-    bodyParser: true,
-  },
-};
-
-export async function POST(req) {
-  const {
-     name ,
-     email ,
-     password ,
-     image , 
-     status,
-     type 
-  } = await req.json(); // assuming req.json() to parse the incoming JSON body
-
-  try {
-    const newMovie = await prisma.user.create({
-      data: {
-        name,
-        email,
-        password,
-        image,
-        status,
-        type
-      },
-    });
-    return new Response(JSON.stringify(newMovie), { status: 201 });
-  } catch (error) {
-    console.error(error);
-    return new Response(JSON.stringify({ error: 'Error creating movie' }), { status: 500 });
-  }
-}
-
-export default async function handler(req) {
+export default async function handler(req, res) {
   if (req.method === 'POST') {
-    return POST(req);
+    try {
+      // Dummy data for the movie entry
+      const movieName = 'Sample Movie';
+      const cast = ['Actor 1', 'Actor 2', 'Actor 3'].join(','); // Assuming cast is an array of strings
+      const releaseDate = new Date();
+      const budget = 100000000; // Example budget
+      const coverPhoto = 'https://example.com/cover-photo.jpg';
+      const description = 'This is a sample movie description.';
+      const rating = 8.5;
+      const lifetimeEarning = 500000000; // Example lifetime earning
+
+      // Insert dummy data into the movie table
+      const newMovie = await prisma.movie.create({
+        data: {
+          movieName,
+          cast,
+          releaseDate,
+          budget,
+          coverPhoto,
+          description,
+          rating,
+          lifetimeEarning,
+        },
+      });
+
+      res.status(201).json(newMovie);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Error creating movie' });
+    }
   } else {
-    return new Response(JSON.stringify({ error: `Method ${req.method} Not Allowed` }), { status: 405 });
+    res.setHeader('Allow', ['POST']);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
