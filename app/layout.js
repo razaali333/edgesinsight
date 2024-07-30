@@ -2,6 +2,7 @@ import "@/node_modules/react-modal-video/css/modal-video.css"
 import { Inter, Jost } from 'next/font/google'
 import Script from 'next/script';
 import { Analytics } from "@vercel/analytics/react"
+import AdSense from "../components/AdSense";
 import "/public/assets/css/bootstrap.min.css"
 import "/public/assets/css/common-style.css"
 import "/public/assets/css/dark-mode.css"
@@ -41,6 +42,7 @@ export default function RootLayout({ children }) {
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 				<title>{metadata.title}</title>
 				<meta name="description" content={metadata.description} />
+				<AdSense pId="pub-1004611093175762"/>
 				<Script
 					strategy="lazyOnload"
 					src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS}`}

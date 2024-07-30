@@ -1,4 +1,4 @@
-// File: H:\nextjs app\tech-blog\app\page.js
+// File: H:\nextjs app\edgesinsight\app\page.js
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
