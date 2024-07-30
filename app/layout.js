@@ -1,7 +1,7 @@
 import "@/node_modules/react-modal-video/css/modal-video.css"
 import { Inter, Jost } from 'next/font/google'
 import Script from 'next/script';
-
+import { Analytics } from "@vercel/analytics/react"
 import "/public/assets/css/bootstrap.min.css"
 import "/public/assets/css/common-style.css"
 import "/public/assets/css/dark-mode.css"
@@ -55,6 +55,7 @@ export default function RootLayout({ children }) {
 						});
 					`}
 				</Script>
+				<Analytics />
 			</head>
 			<body className={`${inter.variable} ${jost.variable}`}>
 				{children}
