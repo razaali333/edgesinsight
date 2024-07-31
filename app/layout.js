@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 				<title>{metadata.title}</title>
 				<meta name="description" content={metadata.description} />
-				<AdSense pId="1004611093175762"/>
+				<AdSense pId={process.env.GOOGLE_ADSENSE} />
 				<Script
 					strategy="lazyOnload"
 					src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS}`}
